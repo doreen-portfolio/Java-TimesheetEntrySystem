@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<h:outputStylesheet library="css" name="styles.css" />
+	<title>#{msgs.menuTitle}</title>
+</h:head>
+<h:body class = "content">
+	<h:form>
+		<p align="right">
+			#{msgs.welcomePrompt}
+			<h:outputText value="#{login.logUser.username}" />
+
+			<h:commandButton value="#{msgs.logoutButtonText}"
+				action="#{login.logout()}" />
+		</p>
+	</h:form>
+	<h:form>
+		<h1 class = "header" id = "heading">#{msgs.menuTitle}</h1>
+		<br />
+		<h3>#{msgs.timesheetListHeader}</h3>
+		<h:dataTable value="#{timesheetListForm.timesheetList}" var="sheet">
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="#{msgs.weekNumber}"
+						style="font-weight: bold" />
+				</f:facet>
+				<h:outputText value="#{sheet.weekNumber}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="#{msgs.weekEnding}"
+						style="font-weight: bold" />
+				</f:facet>
+				<h:outputText value="#{sheet.weekEnding}" />
+			</h:column>
+			<h:column>
+				<h:commandButton value="View" action="#{timesheetListForm.viewTimesheet(sheet)}"/>
+			</h:column>
+			<h:column>
+				<h:commandButton value="EditTimesheet" action="#{timesheetListForm.editTimesheet(sheet)}" rendered="#{sheet.editable}"/>
+			</h:column>
+		</h:dataTable>
+		<p>
+			<h:commandButton value="Edit Current Timesheet" action="#{timesheetListForm.editTimesheet()}" rendered="#{timesheetListForm.logUser.logUser.hasCurrentWeek}"/>
+			<h:commandButton value="Create Timesheet" action="#{timesheetListForm.createNewTimesheet()}" rendered="#{not timesheetListForm.logUser.logUser.hasCurrentWeek}"/>
+		</p>
+	</h:form>
+	
+</h:body>
+</html>

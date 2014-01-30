@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PROCESS model-entity="JSFProcess">
+ <PROCESS-ITEM NAME="rules:" SHAPE="32,17,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::0" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="adminMenu::#adminMenu.xhtml" NAME="output1"
+    PATH="/adminMenu.xhtml" TARGET="rules:#adminMenu.xhtml"
+    TITLE="adminMenu" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="createNewUser::#createUser.xhtml"
+    NAME="output" PATH="/createUser.xhtml"
+    TARGET="rules:#createUser.xhtml" TITLE="createNewUser" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#adminMenu.xhtml" PATH="/adminMenu.xhtml"
+  SHAPE="304,273,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#createUser.xhtml" PATH="/createUser.xhtml"
+  SHAPE="256,33,0,0" model-entity="JSFProcessGroup"/>
+</PROCESS>

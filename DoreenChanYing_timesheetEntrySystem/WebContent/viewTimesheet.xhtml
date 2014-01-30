@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<h:outputStylesheet library="css" name="styles.css" />
+	<title><h:outputText value="#{msgs.editTimesheet}" size="10"
+			rendered="#{timesheetListForm.timesheet.editable}" /> <h:outputText
+			value="#{msgs.viewTimesheet}" size="10"
+			rendered="#{not timesheetListForm.timesheet.editable}" /></title>
+</h:head>
+<h:body class = "content">
+	<h:form>
+		<p align="right">
+			#{msgs.welcomePrompt}
+			<h:outputText value="#{login.logUser.username}" />
+
+			<h:commandButton value="#{msgs.logoutButtonText}"
+				action="#{login.logout()}" />
+		</p>
+	</h:form>
+	<h:form>
+		<h1 class = "header" id = "heading">
+			<h:outputText value="#{msgs.editTimesheet}" size="10"
+				rendered="#{timesheetListForm.timesheet.editable}" />
+			<h:outputText value="#{msgs.viewTimesheet}" size="10"
+				rendered="#{not timesheetListForm.timesheet.editable}" />
+		</h1>
+		<p>
+			<h:commandButton value="#{msgs.returnToMain}"
+				action="#{timesheetListForm.goToMainMenu()}" />
+		</p>
+		<h:panelGrid columns='2'>
+			<h:panelGrid columns='2'>
+				<h:outputText value="#{msgs.eNum}" />
+				<h:outputText value="#{timesheetListForm.logUser.logUser.userid}" />
+				<h:outputText value="#{msgs.name}" />
+				<h:panelGroup>
+					<h:outputText value="#{timesheetListForm.logUser.logUser.fname}" />
+			#{msgs.space}
+			<h:outputText value="#{timesheetListForm.logUser.logUser.lname}" />
+				</h:panelGroup>
+			</h:panelGrid>
+			<h:panelGrid columns='2'>
+				<h:outputText value="#{msgs.weekNum}" />
+				<h:outputText value="#{timesheetListForm.timesheet.weekNumber}" />
+				<h:outputText value="#{msgs.weekEnd}" />
+				<h:outputText value="#{timesheetListForm.timesheet.weekEnding}" />
+			</h:panelGrid>
+
+		</h:panelGrid>
+	</h:form>
+	<h:form>
+		<h:dataTable value="#{timesheetListForm.timesheet.timesheetEntries}"
+			var="timesheet">
+			<h:column>
+				<f:facet name="header">#{msgs.labelProject}</f:facet>
+				<h:inputText value="#{timesheet.project}" size="10"
+					rendered="#{timesheetListForm.timesheet.editable}" />
+				<h:outputText value="#{timesheet.project}" size="10"
+					rendered="#{not timesheetListForm.timesheet.editable}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">#{msgs.labelWp}</f:facet>
+				<h:inputText value="#{timesheet.wp}" size="10"
+					rendered="#{timesheetListForm.timesheet.editable}" />
+				<h:outputText value="#{timesheet.wp}" size="10"
+					rendered="#{not timesheetListForm.timesheet.editable}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">#{msgs.labelTotal}</f:facet>
+				<h:inputText value="#{timesheet.total}" size="10"
+					rendered="#{timesheetListForm.timesheet.editable}" readonly="true" />
+				<h:outputText value="#{timesheet.total}" size="10"
+					rendered="#{not timesheetListForm.timesheet.editable}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">#{msgs.labelSat}</f:facet>
+				<h:inputText value="#{timesheet.sat}" size="10"
+					rendered="#{timesheetListForm.timesheet.editable}" />
+				<h:outputText value="#{timesheet.sat}" size="10"
+					rendered="#{not timesheetListForm.timesheet.editable}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">#{msgs.labelSun}</f:facet>
+				<h:inputText value="#{timesheet.sun}" size="10"
+					rendered="#{timesheetListForm.timesheet.editable}" />
+				<h:outputText value="#{timesheet.sun}" size="10"
+					rendered="#{not timesheetListForm.timesheet.editable}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">#{msgs.labelMon}</f:facet>
+				<h:inputText value="#{timesheet.mon}" size="10"
+					rendered="#{timesheetListForm.timesheet.editable}" />
+				<h:outputText value="#{timesheet.mon}" size="10"
+					rendered="#{not timesheetListForm.timesheet.editable}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">#{msgs.labelTue}</f:facet>
+				<h:inputText value="#{timesheet.tue}" size="10"
+					rendered="#{timesheetListForm.timesheet.editable}" />
+				<h:outputText value="#{timesheet.tue}" size="10"
+					rendered="#{not timesheetListForm.timesheet.editable}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">#{msgs.labelWed}</f:facet>
+				<h:inputText value="#{timesheet.wed}" size="10"
+					rendered="#{timesheetListForm.timesheet.editable}" />
+				<h:outputText value="#{timesheet.wed}" size="10"
+					rendered="#{not timesheetListForm.timesheet.editable}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">#{msgs.labelThu}</f:facet>
+				<h:inputText value="#{timesheet.thu}" size="10"
+					rendered="#{timesheetListForm.timesheet.editable}" />
+				<h:outputText value="#{timesheet.thu}" size="10"
+					rendered="#{not timesheetListForm.timesheet.editable}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">#{msgs.labelFri}</f:facet>
+				<h:inputText value="#{timesheet.fri}" size="10"
+					rendered="#{timesheetListForm.timesheet.editable}" />
+				<h:outputText value="#{timesheet.fri}" size="10"
+					rendered="#{not timesheetListForm.timesheet.editable}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">#{msgs.labelNotes}</f:facet>
+				<h:inputText value="#{timesheet.notes}" size="20"
+					rendered="#{timesheetListForm.timesheet.editable}" />
+				<h:outputText value="#{timesheet.notes}" size="20"
+					rendered="#{not timesheetListForm.timesheet.editable}" />
+			</h:column>
+		</h:dataTable>
+		<h:dataTable value="#{timesheetListForm.timesheet}" var="timesheet" rendered="#{not timesheetListForm.timesheet.editable}">
+			<h:column>
+				<f:facet name="header">#{msgs.totalHours}</f:facet>
+				<h:outputText value="#{timesheet.totalHours}" size="10" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">#{msgs.labelSat}</f:facet>
+				<h:outputText value="#{timesheet.totalSat}" size="10" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">#{msgs.labelSun}</f:facet>
+				<h:outputText value="#{timesheet.totalSun}" size="10" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">#{msgs.labelMon}</f:facet>
+				<h:outputText value="#{timesheet.totalMon}" size="10" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">#{msgs.labelTue}</f:facet>
+				<h:outputText value="#{timesheet.totalTue}" size="10" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">#{msgs.labelWed}</f:facet>
+				<h:outputText value="#{timesheet.totalWed}" size="10" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">#{msgs.labelThu}</f:facet>
+				<h:outputText value="#{timesheet.totalThu}" size="10" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">#{msgs.labelFri}</f:facet>
+				<h:outputText value="#{timesheet.totalFri}" size="10" />
+			</h:column>
+		</h:dataTable>
+		<p>
+			<h:commandButton value="#{msgs.addTimesheetEntryButtonText}"
+				action="#{timesheetListForm.createAnotherEntryInEdit(timesheetListForm.timesheet.numRows + 1)}"
+				rendered="#{timesheetListForm.timesheet.editable}" />
+		</p>
+		<p class = "error">
+				<h:outputText value="#{msgs.errorSat}" size="10"
+					rendered="#{timesheetListForm.satOutofRange}" />
+		</p>
+		<p class = "error">
+				<h:outputText value="#{msgs.errorSun}" size="10"
+					rendered="#{timesheetListForm.sunOutofRange}" />
+		</p>
+		<p class = "error">
+				<h:outputText value="#{msgs.errorMon}" size="10"
+					rendered="#{timesheetListForm.monOutofRange}" />
+		</p>
+		<p class = "error">
+				<h:outputText value="#{msgs.errorTue}" size="10"
+					rendered="#{timesheetListForm.tueOutofRange}" />
+		</p>
+		<p class = "error">
+				<h:outputText value="#{msgs.errorWed}" size="10"
+					rendered="#{timesheetListForm.wedOutofRange}" />
+		</p>
+		<p class = "error">
+				<h:outputText value="#{msgs.errorThu}" size="10"
+					rendered="#{timesheetListForm.thuOutofRange}" />
+		</p>
+		<p class = "error">
+				<h:outputText value="#{msgs.errorFri}" size="10"
+					rendered="#{timesheetListForm.friOutofRange}" />
+		</p>
+		<p class = "error">
+				<h:outputText value="#{msgs.errorWP}" size="10"
+					rendered="#{timesheetListForm.invalidWPProject}" />
+		</p>
+		<p>
+			<h:commandButton value="#{msgs.submitButtonText}"
+				action="#{timesheetListForm.saveEntries()}"
+				rendered ="#{timesheetListForm.timesheet.editable}" />
+		</p>
+	</h:form>
+</h:body>
+</html>

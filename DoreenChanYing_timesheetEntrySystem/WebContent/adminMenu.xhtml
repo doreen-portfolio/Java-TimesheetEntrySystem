@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"  
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<h:outputStylesheet library="css" name="styles.css" />
+	<title>#{msgs.menuTitle}</title>
+</h:head>
+<h:body class = "content">
+	<h:form>
+		<p align="right">
+			#{msgs.welcomePrompt}
+			<h:outputText value="#{login.logUser.username}" />
+			<h:commandButton value="#{msgs.logoutButtonText}"
+				action="#{login.logout()}" />
+		</p>
+	</h:form>
+	<h:form>
+		<h1 class = "header" id = "heading">#{msgs.menuTitle}</h1>
+		<br />
+		<h2>#{msgs.userListHeader}</h2>
+		<h:dataTable value="#{userListForm.userlist}" var="u">
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="#{msgs.editColumn}" style="font-weight: bold" />
+				</f:facet>
+				<h:selectBooleanCheckbox value="#{u.editable}" onclick="submit()" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="#{msgs.userIDLabel}" style="font-weight: bold" />
+				</f:facet>
+
+				<h:outputText value="#{u.user.userid}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="#{msgs.userNameLabel}"
+						style="font-weight: bold" />
+				</f:facet>
+				<h:inputText value="#{u.user.username}" rendered="#{u.editable}"
+					size="10" />
+				<h:outputText value="#{u.user.username}"
+					rendered="#{not u.editable}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="#{msgs.fnameLabel}" style="font-weight: bold" />
+				</f:facet>
+				<h:inputText value="#{u.user.fname}" rendered="#{u.editable}"
+					size="10" />
+				<h:outputText value="#{u.user.fname}" rendered="#{not u.editable}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="#{msgs.lnameLabel}" style="font-weight: bold" />
+				</f:facet>
+				<h:inputText value="#{u.user.lname}" rendered="#{u.editable}"
+					size="10" />
+				<h:outputText value="#{u.user.lname}" rendered="#{not u.editable}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="#{msgs.passwordLabel}"
+						style="font-weight: bold" />
+				</f:facet>
+				<h:inputText value="#{u.user.password}" rendered="#{u.editable}"
+					size="10" />
+				<h:outputText value="#{u.user.password}"
+					rendered="#{not u.editable}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="#{msgs.superuserStatus}"
+						style="font-weight: bold" />
+				</f:facet>
+				<h:outputText value="#{u.user.superuserStatus}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="#{msgs.deleteLabel}" style="font-weight: bold" />
+				</f:facet>
+				<h:commandButton value="#{msgs.deleteLabel}"
+					action="#{userListForm.deleteRow(u.user)}"
+					rendered="#{not u.user.superuserStatus}" />
+			</h:column>
+		</h:dataTable>
+		<p class="error">
+			<h:outputText value="#{msgs.usernameTaken}"
+				rendered="#{userListForm.usernameTaken}" />
+		</p>
+		<h:commandButton value="#{msgs.save}" action="#{userListForm.save}" />
+		<h:commandButton value="#{msgs.createUserLabel}"
+			action="#{userListForm.goToCreateNewUser()}" />
+	</h:form>
+	<br />
+	
+	<h2>#{msgs.timesheetListHeader}</h2>
+	<h:form>
+		<h:dataTable value="#{timesheetListForm.timesheetList}" var="sheet">
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="#{msgs.weekNumber}"
+						style="font-weight: bold" />
+				</f:facet>
+				<h:outputText value="#{sheet.weekNumber}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="#{msgs.weekEnding}"
+						style="font-weight: bold" />
+				</f:facet>
+				<h:outputText value="#{sheet.weekEnding}" />
+			</h:column>
+			<h:column>
+				<h:commandButton value="#{msgs.view}" action="#{timesheetListForm.viewTimesheet(sheet)}"/>
+			</h:column>
+			<h:column>
+				<h:commandButton value="#{msgs.editTimesheet}" action="#{timesheetListForm.editTimesheet(sheet)}" rendered="#{sheet.editable}"/>
+			</h:column>
+		</h:dataTable>
+		<p>
+			<h:commandButton value="#{msgs.editTimesheet}" action="#{timesheetListForm.editTimesheet()}" rendered="#{timesheetListForm.logUser.logUser.hasCurrentWeek}"/>
+			<h:commandButton value="#{msgs.createTimesheetLabel}" action="#{timesheetListForm.createNewTimesheet()}" rendered="#{not timesheetListForm.logUser.logUser.hasCurrentWeek}"/>
+		</p>
+	</h:form>
+	<ui:debug />
+</h:body>
+</html>

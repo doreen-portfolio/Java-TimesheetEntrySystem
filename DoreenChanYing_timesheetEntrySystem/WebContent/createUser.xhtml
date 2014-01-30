@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<h:outputStylesheet library="css" name="styles.css"/>
+	<title>#{msgs.createUserLabel}</title>
+</h:head>
+<h:body class = "content">
+	<h:form>
+		<p align="right">
+			#{msgs.welcomePrompt}
+			<h:outputText value="#{login.logUser.username}" />
+
+			<h:commandButton value="#{msgs.logoutButtonText}"
+				action="#{login.logout()}" />
+		</p>
+	</h:form>
+	<h:form>
+		<h1 class = "header" id = "heading">#{msgs.createUserLabel}</h1>
+		<p>
+			<h:commandButton value="#{msgs.returnToMain}"
+				action="#{userListForm.goToMain()}" />
+		</p>
+	</h:form>
+	<h:form>
+		<h:panelGrid columns="2">
+			#{msgs.userIDLabel}
+			<h:inputText value="#{userListForm.newUser.userid}" />
+			#{msgs.userNameLabel}
+			<h:inputText value="#{userListForm.newUser.username}" />
+			#{msgs.fnameLabel}
+			<h:inputText value="#{userListForm.newUser.fname}" />
+			#{msgs.lnameLabel}
+			<h:inputText value="#{userListForm.newUser.lname}" />
+			#{msgs.passwordLabel}
+			<h:inputText value="#{userListForm.newUser.password}" />
+		</h:panelGrid>
+		<p class="error">
+			<h:outputText value="#{msgs.useridInvalid}"
+				rendered="#{userListForm.newUser.invalidID}" />
+		</p>
+		<p class="error">
+			<h:outputText value="#{msgs.useridTaken}"
+				rendered="#{userListForm.useridTaken}" />
+		</p>
+		<p class="error">
+			<h:outputText value="#{msgs.usernameTaken}"
+				rendered="#{userListForm.usernameTaken}" />
+		</p>
+		<p class="error">
+			<h:outputText value="#{msgs.nullField}"
+				rendered="#{userListForm.nullField}" />
+		</p>
+		<p>
+			<h:commandButton value="#{msgs.submitButtonText}"
+				action="#{userListForm.addUser()}" />
+		</p>
+	</h:form>
+</h:body>
+</html>

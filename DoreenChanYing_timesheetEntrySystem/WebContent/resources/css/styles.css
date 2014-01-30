@@ -1,0 +1,50 @@
+.error {
+	color: #FF0000;
+	font-style: italic;
+}
+
+#heading {
+	padding: 20px;
+	height: 50px;
+	margin-bottom: 10px;
+	background: black;
+}
+
+#content {
+	padding: 5px;
+	position: relative;
+	left: 10px;
+}
+
+.header {
+	font-size: 3.0em;
+	font-style: bold;
+	font-family: BRITANNIC BOLD;
+	text-align: left;
+	color: white;
+}
+
+#footer {
+	padding: 20px;
+	height: 8px;
+	position: relative;
+   margin-top: 10px;
+	background: #eeeeee;
+	border: thin solid lightGray;
+}
+
+.footer {
+	font-style: italic;
+	font-family: Palatino;
+	text-align: right;
+	color: #000000;
+}
+
+.pageTitle {
+	font-size: 1.5em;
+	font-style: bold;
+}
+.pageSubtitle {
+	font-size: 1.3em;
+	font-style: bold;
+}
